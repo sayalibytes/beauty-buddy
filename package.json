@@ -1,0 +1,22 @@
+{
+  "name": "beauty-buddy",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "description": "### Project Proposal for Skincare Application",
+  "scripts": {
+    "start": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
+    "dev": "concurrently \"npm start --prefix client\" \"npm run dev --prefix server\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.5.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
