@@ -1,7 +1,7 @@
-import "./Home.scss";
+import "./GetStarted.scss";
 import React from "react";
 
-function Home() {
+function GetStarted() {
 
   return (
     <div className="bb">
@@ -10,4 +10,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default GetStarted;

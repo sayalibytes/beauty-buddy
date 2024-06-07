@@ -1,11 +1,14 @@
 import "./App.scss";
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome/Welcome";
 import Questionnaire from "./components/Questionnaire/Questionnaire";
+import GetStarted from "./components/GetStarted/GetStarted";
 import Home from "./components/Home/Home";
 
 function App() {
   const [skinType, setSkinType] = useState(null);
+
   return (
     <div className="App">
       <BrowserRouter>

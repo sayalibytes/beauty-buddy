@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import './Questionnaire.scss';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getQuestionnaire } from "../../utilities/api";
-import './Questionnaire.scss';
 
 function Questionnaire({ setSkinType }) {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [followUp, setFollowUp] = useState(false);
   const [answers, setAnswers] = useState([]);
-  const { setSkinType } = useContext(SkinTypeContext);
   const Navigate = useNavigate();
 
   useEffect(() => {
