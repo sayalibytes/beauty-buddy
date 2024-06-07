@@ -5,7 +5,7 @@ function Welcome() {
   return (
       <div className="bb">
         <div className="bb__welcome">
-          <h2 className="bb__title">Welcome to Beauty Buddy</h2>
+          <h2 className="bb__title">Welcome to <br />Beauty Buddy</h2>
           <p className="bb__tagline">One stop solution for all your skin care needs</p>
           <img className="bb__logo" src={bbLogo} alt="logo" />
         </div>
