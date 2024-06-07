@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Morning Routine",
+    "products": ["Cleanser", "Moisturizer", "Sunscreen"]
+  },
+  {
+    "id": 2,
+    "title": "Evening Routine",
+    "products": ["Cleanser", "Toner", "Moisturizer"]
+  }
+]
