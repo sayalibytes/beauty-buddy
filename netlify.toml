@@ -1,0 +1,12 @@
+[build]
+  base = "client"           
+  publish = "client/build"  
+  command = "npm run build" 
+
+[context.production.environment]
+  REACT_APP_API_BASE_URL = "https://beauty-buddy-7f3e1b864c30.herokuapp.com" 
+
+[[redirects]]
+  from = "/*"   
+  to = "/index.html" 
+  status = 200  
