@@ -4,17 +4,20 @@ const fs = require("fs");
 
 // Function to read a JSON file and parse its contents
 function loadQuestionsData() {
-  const questions = JSON.parse(
-    fs.readFileSync("./data/questions.json", "utf8")
-  );
-  return questions;
+    const questionsPath = path.join(__dirname, "..", "data", "questions.json");
+    const questions = JSON.parse(fs.readFileSync(questionsPath, "utf8"));
+    return questions;
 }
 
-// Handle the API endpoint to get the questionnaire data
 router.get("/", (req, res) => {
-  const questions = loadQuestionsData();
-  console.log("Received GET request at /questionnaire");
-  res.json(questions);
-});
-
-module.exports = router;
+    console.log("Received GET request at /questionnaire");
+    try {
+      const questions = loadQuestionsData();
+      res.json(questions);
+    } catch (error) {
+      console.error("Error loading questions data:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
+  module.exports = router;
