@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { getQuestionnaire } from './api'; // Update the import path as necessary
-import axios from 'axios';
+import { getQuestionnaire } from "../../utilities/api";
 import { SkinTypeContext } from '../SkinTypeContext';
 import './Questionnaire.scss';
 
@@ -34,7 +33,7 @@ function Questionnaire() {
     } else if (followUp) {
       determineSkinType(option);
       setFollowUp(false);
-      setCurrentQuestionIndex(3); // Update index to point to next main question
+      setCurrentQuestionIndex(3);
     } else {
       if (currentQuestion.id === 3) {
         setSkinType(option);
@@ -43,7 +42,7 @@ function Questionnaire() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        Navigate.push('/here-you-go'); // Navigate to the HereYouGo component
+        Navigate('/here-you-go');
       }
     }
   };
