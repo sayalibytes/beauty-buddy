@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://beauty-buddy-7f3e1b864c30.herokuapp.com'; 
+const API_URL = process.env.REACT_APP_API_BASE_URL || 'https://beauty-buddy-7f3e1b864c30.herokuapp.com'; 
 
 export const getQuestionnaire = () => {
   return axios.get(`${API_URL}/questionnaire`);
