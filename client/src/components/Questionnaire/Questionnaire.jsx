@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { getQuestionnaire } from './api'; // Update the import path as necessary
+import { useNavigate } from 'react-router-dom';
+// import { getQuestionnaire } from './api'; // Update the import path as necessary
+import axios from 'axios';
 import { SkinTypeContext } from '../SkinTypeContext';
 import './Questionnaire.scss';
 
@@ -10,7 +11,7 @@ function Questionnaire() {
   const [followUp, setFollowUp] = useState(false);
   const [answers, setAnswers] = useState([]);
   const { setSkinType } = useContext(SkinTypeContext);
-  const history = useHistory();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -42,7 +43,7 @@ function Questionnaire() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        history.push('/here-you-go'); // Navigate to the HereYouGo component
+        Navigate.push('/here-you-go'); // Navigate to the HereYouGo component
       }
     }
   };
