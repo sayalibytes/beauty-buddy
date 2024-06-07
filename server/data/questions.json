@@ -1,0 +1,37 @@
+{
+    "questions": [
+      { "id": 1,
+        "question": "What is your gender?",
+        "options": ["Male", "Female", "Other"]
+      },
+      { "id": 2,
+        "question": "What is your age?",
+        "options": ["Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
+      },
+      { "id": 3,
+        "question": "What is your skin type?",
+        "options": ["Normal", "Dry", "Oily", "Combination", "Sensitive"]
+      },
+      { "id": 4,
+        "question": "What's your experience with skincare routines?",
+        "options": ["I do it regular", "I have tried it few times", "Don't know much about skincare"]
+      },
+      { "id": 5,
+        "question": "What brings you to BeautyBuddy?",
+        "options": ["Learn more about skincare", "Improve routine", "Get product recommendations", "Track changes of my skin", "Track my product shelf", "Trying something new"]
+      },
+      { "id": 6,
+        "followup_question": "How does your skin feel by the end of the day?",
+        "options": ["Oily", "Dry", "Balanced"]
+      },
+      { "id": 7,
+        "followup_question": "How often do you experience breakouts?",
+        "options": ["Frequently", "Occasionally", "Rarely"]
+      },
+      { "id": 8,
+        "followup_question": "Does your skin feel tight or itchy after cleansing?",
+        "options": ["Yes", "No"]
+      }
+    ]
+  }
+  
