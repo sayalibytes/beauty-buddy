@@ -1,7 +1,7 @@
 import './Questionnaire.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { getQuestionnaire } from "../../utilities/api";
+import { getQuestionnaire } from "../../utilities/api";
 
 function Questionnaire({ setSkinType }) {
   const [questions, setQuestions] = useState([]);
