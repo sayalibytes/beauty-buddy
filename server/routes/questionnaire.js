@@ -1,25 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
 
 // Function to read a JSON file and parse its contents
-const readJsonFile = (filePath) => {
-    console.log(`Reading file from path: ${filePath}`);
-  const data = fs.readFileSync(path.join(__dirname, '..', filePath), 'utf-8');
-  return JSON.parse(data);
-};
+function loadQuestionsData() {
+  const questions = JSON.parse(
+    fs.readFileSync("./data/questions.json", "utf8")
+  );
+  return questions;
+}
 
 // Handle the API endpoint to get the questionnaire data
-router.get('/', (req, res) => {
-    console.log('Received GET request at /questionnaire');
-    try {
-        const data = readJsonFile('data/questions.json');
-        res.json(data);
-      } catch (error) {
-        console.error('Error reading questionnaire data:', error);
-        res.status(500).send('Internal Server Error');
-      }
-    });
-    
+router.get("/", (req, res) => {
+  const questions = loadQuestionsData();
+  console.log("Received GET request at /questionnaire");
+  res.json(questions);
+});
+
 module.exports = router;
