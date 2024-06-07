@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getQuestionnaire } from "../../utilities/api";
-import { SkinTypeContext } from '../SkinTypeContext';
 import './Questionnaire.scss';
 
-function Questionnaire() {
+function Questionnaire({ setSkinType }) {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [followUp, setFollowUp] = useState(false);
@@ -42,7 +41,7 @@ function Questionnaire() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        Navigate('/here-you-go');
+        Navigate('/get-started');
       }
     }
   };
