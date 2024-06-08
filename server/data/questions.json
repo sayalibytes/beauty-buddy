@@ -2,22 +2,27 @@
     "questions": [
       { "id": 1,
         "question": "What is your gender?",
+        "description": "Knowing your gender helps us to tailor skincare recommendations specific to your needs.",
         "options": ["Male", "Female", "Other"]
       },
       { "id": 2,
         "question": "What is your age?",
+        "description": "Different age groups have different skincare needs. Please select your age range to help us provide the best recommendations.",
         "options": ["Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
       },
       { "id": 3,
         "question": "What is your skin type?",
+        "description": "Your skin type is crucial for determining the right skincare routine and products for you.",
         "options": ["Normal", "Dry", "Oily", "Combination", "Sensitive", "I don't know"]
       },
       { "id": 4,
         "question": "What's your experience with skincare routines?",
+        "description": "Understanding your experience with skincare routines helps us provide appropriate advice and recommendations.",
         "options": ["I do it regular", "I have tried it few times", "Don't know much about skincare"]
       },
       { "id": 5,
         "question": "What brings you to BeautyBuddy?",
+        "description": "Let us know your main reasons for using BeautyBuddy so we can better assist you.",
         "options": ["Learn more about skincare", "Improve routine", "Get product recommendations", "Track changes of my skin", "Track my product shelf", "Trying something new"]
       },
       { "id": 6,
