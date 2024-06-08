@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { readJsonFile, writeJsonFile } = require('../utils');
+const { readJsonFile, writeJsonFile } = require('../utility/utils');
 
 const ROUTINES_FILE_PATH = path.join(__dirname, "..", "data", "routines.json");
 
