@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getQuestionnaire } from "../../utilities/api";
 import './Questionnaire.scss';
@@ -8,7 +8,6 @@ function Questionnaire({ setSkinType }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [followUp, setFollowUp] = useState(false);
   const [answers, setAnswers] = useState([]);
-  const { setSkinType } = useContext(SkinTypeContext);
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -74,6 +73,7 @@ function Questionnaire({ setSkinType }) {
           {followUp ? (
             <>
               <h2 className="questionnaire__title">{questions[currentQuestionIndex + 1].followup_question}</h2>
+              <p className="questionnaire__description">{questions[currentQuestionIndex].description}</p>
               <div className="questionnaire__options">
                 {questions[currentQuestionIndex + 1].options.map((option, index) => (
                   <button
