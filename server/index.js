@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 });
 
 app.use('/questionnaire', require('./routes/questionnaire'));
-app.use('/routines', require('./routes/routines'));
-app.use('/product-tracking', require('./routes/productTracking'));
+app.use('/routine', require('./routes/routine'));
+app.use('/product-tracking', require('./routes/trackProduct'));
 // app.use('/journal', require('./routes/journal'));
 // app.use('/skin-types', require('./routes/skinTypes'));
 
