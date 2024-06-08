@@ -73,6 +73,7 @@ function Questionnaire({ setSkinType }) {
           {followUp ? (
             <>
               <h2 className="questionnaire__title">{questions[currentQuestionIndex + 1].followup_question}</h2>
+              <p className="questionnaire__description">{questions[currentQuestionIndex].description}</p>
               <div className="questionnaire__options">
                 {questions[currentQuestionIndex + 1].options.map((option, index) => (
                   <button
