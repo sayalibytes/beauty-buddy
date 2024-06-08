@@ -1,31 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
 const path = require("path");
+const { readJsonFile } = require("../utils");
 
-// Function to read a JSON file and parse its contents
-function loadQuestionsData() {
-    const questionsPath = path.join(__dirname, "..", "data", "questions.json");
-    console.log(`Loading questions from: ${questionsPath}`);
-  
-  if (!fs.existsSync(questionsPath)) {
-    console.log("Questions file not found");
-    throw new Error("Questions file not found");
-  }
-  const questionsContent = fs.readFileSync(questionsPath, "utf8");
-  try {
-    const questions = JSON.parse(questionsContent);
-    return questions;
-} catch (error) {
-    console.log("Error parsing JSON:", error);
-    throw new Error("Error parsing questions JSON");
-  }
-}
+const QUESTIONS_FILE_PATH = path.join(__dirname, "..", "data", "questions.json");
 
 router.get("/", (req, res) => {
-    console.log("Received GET request at /questionnaire");
     try {
-      const questions = loadQuestionsData();
+      const questions = readJsonFile(QUESTIONS_FILE_PATH);
       res.json(questions);
     } catch (error) {
       console.error("Error loading questions data:", error);
