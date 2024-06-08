@@ -10,7 +10,7 @@
       },
       { "id": 3,
         "question": "What is your skin type?",
-        "options": ["Normal", "Dry", "Oily", "Combination", "Sensitive"]
+        "options": ["Normal", "Dry", "Oily", "Combination", "Sensitive", "I don't know"]
       },
       { "id": 4,
         "question": "What's your experience with skincare routines?",
