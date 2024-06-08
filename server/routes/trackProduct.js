@@ -1,60 +1,126 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const moment = require('moment');
+const moment = require("moment");
+const path = require("path");
+const { readJsonFile, writeJsonFile } = require("../utils");
 
-// Sample data for demonstration
-let productTracking = [
-  { id: 1, name: 'Cleanser', startDate: '2024-01-01', LifeAfterOpening: '12 months', expiryDate: '2025-12-31' },
-  { id: 2, name: 'Moisturiser', startDate: '2024-02-01', LifeAfterOpening: '6 months', expiryDate: '2025-08-01' },
-  { id: 3, name: 'Sunscreen', startDate: '2024-03-01', LifeAfterOpening: '18 months', expiryDate: '2026-09-01' }
-];
+const PRODUCTS_FILE_PATH = path.join(
+  __dirname,
+  "..",
+  "data",
+  "trackProducts.json"
+);
+
+const formatDate = (date) => moment(date, "YYYY-MM-DD").format("DD-MM-YYYY");
 
 const calculateExpiryStatus = (product) => {
-  const startDate = moment(product.startDate);
-  const lifeAfterOpening = parseInt(product.LifeAfterOpening.split(' ')[0]); 
-  const expiryDate = startDate.add(lifeAfterOpening, 'months');
+  const startDate = moment(product.startDate, "DD-MM-YYYY");
+  const lifeAfterOpening = parseInt(product.LifeAfterOpening.split(" ")[0]);
+
+  const useBeforeDate = startDate.clone().add(lifeAfterOpening, "months");
+  const formattedUseBeforeDate = useBeforeDate.format("DD-MM-YYYY");
+
+  const expiryDate = moment(product.expiryDate, "DD-MM-YYYY");
+  const formattedExpiryDate = expiryDate.format("DD-MM-YYYY");
+
+  // Determine the earlier date
+  const displayDate = useBeforeDate.isBefore(expiryDate)
+    ? formattedUseBeforeDate
+    : formattedExpiryDate;
   const currentDate = moment();
+  const timeLeft = moment(displayDate, "DD-MM-YYYY").diff(
+    currentDate,
+    "months",
+    true
+  );
+  const isExpiringSoon = timeLeft <= 1;
 
-  const timeLeft = expiryDate.diff(currentDate, 'months', true);
-  const isExpiringSoon = timeLeft <= 1; 
-
-  return { ...product, expiryDate: expiryDate.format('YYYY-MM-DD'), isExpiringSoon };
+  return {
+    ...product,
+    startDate: formatDate(product.startDate),
+    displayDate,
+    isExpiringSoon,
+  };
 };
 
-router.get('/', (req, res) => {
-  const productsWithExpiryStatus = productTracking.map(calculateExpiryStatus);
+router.get("/", (req, res) => {
+  const products = readJsonFile(PRODUCTS_FILE_PATH);
+  const productsWithExpiryStatus = products.map(calculateExpiryStatus);
   res.json(productsWithExpiryStatus);
 });
 
-router.post('/', (req, res) => {
-  const { name, startDate, LifeAfterOpening } = req.body;
+router.post("/", (req, res) => {
+  const { name, startDate, LifeAfterOpening, expiryDate } = req.body;
+  if (!name || !startDate || !LifeAfterOpening || !expiryDate) {
+    return res
+      .status(400)
+      .json({
+        message:
+          "Name, start date, LifeAfterOpening, and expiry date are required.",
+      });
+  }
+
+  const products = readJsonFile(PRODUCTS_FILE_PATH);
+  const formattedStartDate = formatDate(startDate);
+  const formattedExpiryDate = formatDate(expiryDate);
+
   const newProduct = {
-    id: productTracking.length + 1,
+    id: products.length + 1,
     name,
-    startDate,
+    startDate: formattedStartDate,
     LifeAfterOpening,
-    expiryDate: ''
+    expiryDate: formattedExpiryDate,
   };
-  productTracking.push(newProduct);
-  res.status(201).json({ message: 'Product tracking added', product: newProduct });
+
+  products.push(newProduct);
+  writeJsonFile(PRODUCTS_FILE_PATH, products);
+  res
+    .status(201)
+    .json({ message: "Product tracking added", product: newProduct });
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
   const id = Number(req.params.id);
-  const { name, startDate, LifeAfterOpening } = req.body;
-  const productIndex = productTracking.findIndex(p => p.id === id);
+  const { name, startDate, LifeAfterOpening, expiryDate } = req.body;
+
+  if (!name || !startDate || !LifeAfterOpening || !expiryDate) {
+    return res
+      .status(400)
+      .json({
+        message:
+          "Name, start date, LifeAfterOpening, and expiry date are required.",
+      });
+  }
+
+  const products = readJsonFile(PRODUCTS_FILE_PATH);
+  const productIndex = products.findIndex((p) => p.id === id);
   if (productIndex !== -1) {
-    productTracking[productIndex] = { id, name, startDate, LifeAfterOpening, expiryDate: '' };
-    res.json({ message: 'Product tracking updated', product: productTracking[productIndex] });
+    const formattedStartDate = formatDate(startDate);
+    const formattedExpiryDate = formatDate(expiryDate);
+
+    products[productIndex] = {
+      id,
+      name,
+      startDate: formattedStartDate,
+      LifeAfterOpening,
+      expiryDate: formattedExpiryDate,
+    };
+
+    writeJsonFile(PRODUCTS_FILE_PATH, products);
+    res.json({
+      message: "Product tracking updated",
+      product: products[productIndex],
+    });
   } else {
-    res.status(404).json({ message: 'Product not found' });
+    res.status(404).json({ message: "Product not found" });
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   const id = Number(req.params.id);
-  productTracking = productTracking.filter(p => p.id !== id);
-  res.json({ message: 'Product tracking deleted' });
+  let products = readJsonFile(PRODUCTS_FILE_PATH);
+  products = products.filter((p) => p.id !== id);
+  res.json({ message: "Product tracking deleted" });
 });
 
 module.exports = router;
