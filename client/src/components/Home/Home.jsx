@@ -1,6 +1,5 @@
 import "./Home.scss";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { getRoutines, addRoutine } from "../../utilities/api";
 import { getProductTracking, addProductTracking } from "../../utilities/api";
 import Header from "../Header/Header";

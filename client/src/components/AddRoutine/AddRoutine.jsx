@@ -16,9 +16,9 @@ function AddRoutine({
   const [products, setProducts] = useState(initialData.products);
 
   useEffect(() => {
-    setTitle(initialData.title);
-    setProducts(initialData.products);
-  }, [initialData]);
+      setTitle(initialData.title);
+      setProducts(initialData.products);
+  }, [initialData.title, initialData.products]);
 
   const handleProductChange = (index, value) => {
     const newProducts = [...products];
