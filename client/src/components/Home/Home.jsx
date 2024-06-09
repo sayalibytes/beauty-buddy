@@ -5,10 +5,6 @@ import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import { getRoutines, getProductTracking } from "../../utilities/api";
 
-const API_URL =
-  process.env.REACT_APP_API_BASE_URL ||
-  "https://beauty-buddy-7f3e1b864c30.herokuapp.com";
-
 const Home = ({ skinType }) => {
   const [routines, setRoutines] = useState([]);
   const [products, setProducts] = useState([]);
@@ -40,22 +36,24 @@ const Home = ({ skinType }) => {
     <div className="bb">
       <Header />
       <Calendar />
-      <h1>Your Skincare Dashboard</h1>
-      <p>Your skin type is {skinType}</p>
+      <h1 className="main-page__heading">Your Skincare Dashboard</h1>
+      <p className="main-page__description">Your skin type is {skinType}</p>
       <div className="main-page__content">
         <div className="main-page__section">
           <h2>
-            Routines{" "}
+            My Routines{" "}
             <Link to="/add-routine" className="add-btn">
               +
             </Link>
           </h2>
-          <div className="routines-list">
+          <div className="main-page__routines-list">
             {routines.map((routine) => (
-              <div key={routine.id} className="routine-item">
-                <input type="checkbox" />
-                <span>{routine.title}</span>
-                <span>{routine.products.length} products</span>
+              <div key={routine.id} className="main-page__routine-item">
+                <input className="main-page__checkbox" type="checkbox" />
+                <div className="main-page__display">
+                <h4>{routine.title}</h4>
+                <p>{routine.products.length} products</p>
+                </div>
               </div>
             ))}
           </div>
@@ -70,8 +68,8 @@ const Home = ({ skinType }) => {
           <div className="products-list">
             {products.map((product) => (
               <div key={product.id} className="product-item">
-                <span>{product.name}</span>
-                <span>Use before - {product.displayDate}</span>
+                <h4>{product.name}</h4>
+                <p>Use before - {product.displayDate}</p>
               </div>
             ))}
           </div>
