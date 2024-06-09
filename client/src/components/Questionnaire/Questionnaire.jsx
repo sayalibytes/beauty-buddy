@@ -15,7 +15,7 @@ function Questionnaire({ setSkinType }) {
     const fetchQuestions = async () => {
       try {
         const response = await getQuestionnaire();
-        console.log("Questions fetched:", response.data.questions);
+        
         setQuestions(response.data.questions);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -27,7 +27,6 @@ function Questionnaire({ setSkinType }) {
 
   const handleOptionClick = (option) => {
     const currentQuestion = questions[currentQuestionIndex];
-    console.log("Current Question:", currentQuestion);
 
     if (currentQuestion.id === 3 && option === "I don't know") {
       if (
@@ -46,7 +45,7 @@ function Questionnaire({ setSkinType }) {
       } else {
         setFollowUpQuestions([]);
         setCurrentFollowUpIndex(-1);
-        moveToNextQuestion();
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }
     } else {
       if (currentQuestion.id === 3) {

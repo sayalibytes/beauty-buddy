@@ -12,7 +12,6 @@ const QUESTIONS_FILE_PATH = path.join(
 );
 
 router.get("/", (req, res) => {
-  console.log("Received GET request at /questionnaire");
 
   try {
     const questions = readJsonFile(QUESTIONS_FILE_PATH);
