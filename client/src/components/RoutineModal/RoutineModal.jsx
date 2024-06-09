@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import "./AddRoutine.scss";
+import "./RoutineModal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 Modal.setAppElement("#root");
 
-function AddRoutine({
+function RoutineModal({
   isOpen,
   onRequestClose,
   onSubmit,
   initialData = { title: "", products: [""] },
+  isEdit = false
 }) {
   const [title, setTitle] = useState(initialData.title);
   const [products, setProducts] = useState(initialData.products);
 
   useEffect(() => {
-    setTitle(initialData.title);
-    setProducts(initialData.products);
-  }, [initialData.title, initialData.products, title, products]);
-
+    if (initialData.title !== title) {
+        setTitle(initialData.title);
+      }
+      if (JSON.stringify(initialData.products) !== JSON.stringify(products)) {
+        setProducts(initialData.products);
+      }
+    }, [initialData.title, initialData.products, title, products]);  
+    
   const handleProductChange = (index, value) => {
     const newProducts = [...products];
     newProducts[index] = value;
@@ -45,12 +50,12 @@ function AddRoutine({
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Add Routine"
+      contentLabel={isEdit ? "Edit Routine" : "Add Routine"}
       className="modal"
       overlayClassName="overlay"
     >
       <div className="add-routine">
-        <h2>Add Routine</h2>
+      <h2>{isEdit ? "Edit Routine" : "Add Routine"}</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label>
@@ -104,7 +109,7 @@ function AddRoutine({
             >
               <FontAwesomeIcon icon={faTimes} /> Cancel
             </button>
-            <button type="submit">Add Routine</button>
+            <button type="submit">{isEdit ? "Save Changes" : "Add Routine"}</button>
           </div>
         </form>
       </div>
@@ -112,4 +117,4 @@ function AddRoutine({
   );
 }
 
-export default AddRoutine;
+export default RoutineModal;

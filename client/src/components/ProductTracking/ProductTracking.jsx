@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getProductTracking, updateProductTracking, deleteProductTracking } from "../../utilities/api";
-import AddProduct from "../AddProduct/AddProduct";
+import {
+  getProductTracking,
+  addProductTracking,
+  updateProductTracking,
+  deleteProductTracking,
+} from "../../utilities/api";
+import Header from "../Header/Header";
+import ProductModal from "../ProductModal/ProductModal";
 import "./ProductTracking.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +29,11 @@ function ProductTracking() {
     fetchProducts();
   }, []);
 
+  const handleAddProduct = () => {
+    setEditingProduct(null);
+    setIsModalOpen(true);
+  };
+
   const handleEditProduct = (product) => {
     setEditingProduct(product);
     setIsModalOpen(true);
@@ -37,43 +48,71 @@ function ProductTracking() {
     }
   };
 
-  const handleSaveProduct = async (updatedProduct) => {
-    try {
-      const response = await updateProductTracking(editingProduct.id, updatedProduct);
-      setProducts(
-        products.map((product) =>
-          product.id === editingProduct.id ? response.data : product
-        )
-      );
-      setIsModalOpen(false);
-      setEditingProduct(null);
-    } catch (error) {
-      console.error("Error updating product:", error);
+  const handleSaveProduct = async (product) => {
+    if (editingProduct) {
+      try {
+        const response = await updateProductTracking(
+          editingProduct.id,
+          product
+        );
+        setProducts(
+          products.map((p) => (p.id === editingProduct.id ? response.data : p))
+        );
+      } catch (error) {
+        console.error("Error updating product:", error);
+      }
+    } else {
+      try {
+        const response = await addProductTracking(product);
+        setProducts([...products, response.data]);
+      } catch (error) {
+        console.error("Error adding product:", error);
+      }
     }
+    setIsModalOpen(false);
+    setEditingProduct(null);
   };
 
   return (
-    <div className="product-tracking">
-      <h2>Product Tracking</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <span>{product.name} (Use before: {product.displayDate})</span>
-            <button onClick={() => handleEditProduct(product)}>
-              <FontAwesomeIcon icon={faEdit} />
-            </button>
-            <button onClick={() => handleDeleteProduct(product.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          </li>
-        ))}
-      </ul>
-      <AddProduct
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        onSubmit={handleSaveProduct}
-        initialData={editingProduct || { name: "", startDate: "", LifeAfterOpening: "", expiryDate: "" }}
-      />
+    <div className="bb">
+      <Header />
+      <div className="product-tracking">
+        <div className="main__display">
+          <h2 className="main__title">Track Product Expiry</h2>
+          <button onClick={handleAddProduct}>
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+        </div>
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>
+              <span>
+                {product.name} (Use before: {product.displayDate})
+              </span>
+              <button onClick={() => handleEditProduct(product)}>
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
+              <button onClick={() => handleDeleteProduct(product.id)}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </li>
+          ))}
+        </ul>
+        <ProductModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSubmit={handleSaveProduct}
+          initialData={
+            editingProduct || {
+              name: "",
+              startDate: "",
+              LifeAfterOpening: "",
+              expiryDate: "",
+            }
+          }
+          isEdit={!!editingProduct}
+        />
+      </div>
     </div>
   );
 }
