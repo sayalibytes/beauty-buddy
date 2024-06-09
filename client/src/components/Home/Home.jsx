@@ -4,8 +4,8 @@ import { getRoutines, addRoutine } from "../../utilities/api";
 import { getProductTracking, addProductTracking } from "../../utilities/api";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
-import AddRoutine from "../AddRoutine/AddRoutine";
-import AddProduct from "../AddProduct/AddProduct";
+import RoutineModal from "../RoutineModal/RoutineModal";
+import ProductModal from "../ProductModal/ProductModal";
 
 const Home = ({ skinType }) => {
   const [routines, setRoutines] = useState([]);
@@ -93,12 +93,12 @@ const Home = ({ skinType }) => {
         </ul>
         </div>
       </div>
-      <AddRoutine
+      <RoutineModal
         isOpen={routineModalIsOpen}
         onRequestClose={() => setRoutineModalIsOpen(false)}
         onSubmit={handleAddRoutine}
       />
-      <AddProduct
+      <ProductModal
         isOpen={productModalIsOpen}
         onRequestClose={() => setProductModalIsOpen(false)}
         onSubmit={handleAddProduct}

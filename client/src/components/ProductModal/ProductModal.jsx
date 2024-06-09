@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
-import './AddProduct.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faJar } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import "./ProductModal.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faJar } from "@fortawesome/free-solid-svg-icons";
 
-Modal.setAppElement('#root'); // Ensure accessibility
+Modal.setAppElement("#root"); // Ensure accessibility
 
-function AddProduct ({ isOpen, onRequestClose, onSubmit, initialData = { name: '', startDate: '', lifeAfterOpening: '', expiryDate: '' } }) {
+function ProductModal({
+  isOpen,
+  onRequestClose,
+  onSubmit,
+  initialData = {
+    name: "",
+    startDate: "",
+    lifeAfterOpening: "",
+    expiryDate: "",
+  },
+  isEdit = false
+}) {
   const [name, setName] = useState(initialData.name);
   const [startDate, setStartDate] = useState(initialData.startDate);
-  const [lifeAfterOpening, setLifeAfterOpening] = useState(initialData.lifeAfterOpening);
+  const [lifeAfterOpening, setLifeAfterOpening] = useState(
+    initialData.lifeAfterOpening
+  );
   const [expiryDate, setExpiryDate] = useState(initialData.expiryDate);
 
   useEffect(() => {
@@ -29,19 +42,30 @@ function AddProduct ({ isOpen, onRequestClose, onSubmit, initialData = { name: '
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Add Product"
+      contentLabel={isEdit ? "Edit Product" : "Add Product"}
       className="modal"
       overlayClassName="overlay"
     >
-      <h2>Add Product</h2>
+      <h2>{isEdit ? "Edit Product" : "Add Product"}</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </label>
         <label>
           Open Date
-          <input type="text" value={startDate} placeholder='DD-MM-YYYY' onChange={(e) => setStartDate(e.target.value)} required />
+          <input
+            type="text"
+            value={startDate}
+            placeholder="DD-MM-YYYY"
+            onChange={(e) => setStartDate(e.target.value)}
+            required
+          />
         </label>
         <label className="shelf-life-label">
           <span>
@@ -58,17 +82,23 @@ function AddProduct ({ isOpen, onRequestClose, onSubmit, initialData = { name: '
         </label>
         <label>
           Expiry Date
-          <input type="text" value={expiryDate} placeholder='DD-MM-YYYY' onChange={(e) => setExpiryDate(e.target.value)} required />
+          <input
+            type="text"
+            value={expiryDate}
+            placeholder="DD-MM-YYYY"
+            onChange={(e) => setExpiryDate(e.target.value)}
+            required
+          />
         </label>
         <div className="modal-buttons">
           <button type="button" className="cancel-btn" onClick={onRequestClose}>
             <FontAwesomeIcon icon={faTimes} /> Cancel
           </button>
-          <button type="submit">Add Product</button>
+          <button type="submit">{isEdit ? "Save Changes" : "Add Product"}</button>
         </div>
       </form>
     </Modal>
   );
 }
 
-export default AddProduct;
+export default ProductModal;
