@@ -16,7 +16,7 @@ function App() {
       <Route path="/" element={<Welcome />} />
       <Route path="/questionnaire" element={<Questionnaire setSkinType={setSkinType} />} />
       <Route path="/get-started" element={<GetStarted />} />
-      <Route path="/home/*" element={<Home skinType={skinType}/>} />
+      <Route path="/home" element={<Home skinType={skinType}/>} />
       </Routes>
       </BrowserRouter>
     </div>
