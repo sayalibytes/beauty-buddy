@@ -9,8 +9,8 @@ function Header () {
           <img src={bbLogo} alt="Beauty Buddy Logo" className="main-page__logo" />
           <nav className="main-page__nav">
             <Link to="/home" className="main-page__link">Home</Link>
-            <Link to="/routines" className="main-page__link">Routines</Link>
-            <Link to="/product-tracking" className="main-page__link">Product Tracking</Link>
+            <Link to="/routine" className="main-page__link">Routines</Link>
+            <Link to="/products" className="main-page__link">Product Tracking</Link>
           </nav>
         </header>
         </div>
