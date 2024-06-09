@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const moment = require("moment");
 const path = require("path");
-const { readJsonFile, writeJsonFile } = require("../utility/utils");
+const { readJsonFile, writeJsonFile } = require('../utility/utils');
 
 const PRODUCTS_FILE_PATH = path.join(
   __dirname,
