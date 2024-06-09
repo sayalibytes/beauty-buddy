@@ -9,14 +9,14 @@
   {
     "id": 2,
     "name": "Moisturiser",
-    "startDate": "2024-02-01",
+    "startDate": "2024-01-01",
     "LifeAfterOpening": "6 months",
     "expiryDate": "2025-08-01"
   },
   {
     "id": 3,
     "name": "Sunscreen",
-    "startDate": "2024-03-01",
+    "startDate": "2024-02-15",
     "LifeAfterOpening": "18 months",
     "expiryDate": "2026-09-01"
   }

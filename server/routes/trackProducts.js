@@ -14,13 +14,13 @@ const PRODUCTS_FILE_PATH = path.join(
 const formatDate = (date) => moment(date, "YYYY-MM-DD").format("DD-MM-YYYY");
 
 const calculateExpiryStatus = (product) => {
-  const startDate = moment(product.startDate, "DD-MM-YYYY");
+  const startDate = moment(product.startDate, "YYYY-MM-DD");
   const lifeAfterOpening = parseInt(product.LifeAfterOpening.split(" ")[0]);
 
   const useBeforeDate = startDate.clone().add(lifeAfterOpening, "months");
   const formattedUseBeforeDate = useBeforeDate.format("DD-MM-YYYY");
 
-  const expiryDate = moment(product.expiryDate, "DD-MM-YYYY");
+  const expiryDate = moment(product.expiryDate, "YYYY-MM-DD");
   const formattedExpiryDate = expiryDate.format("DD-MM-YYYY");
 
   // Determine the earlier date
@@ -30,10 +30,9 @@ const calculateExpiryStatus = (product) => {
   const currentDate = moment();
   const timeLeft = moment(displayDate, "DD-MM-YYYY").diff(
     currentDate,
-    "months",
-    true
+    "days",
   );
-  const isExpiringSoon = timeLeft <= 1;
+  const isExpiringSoon = timeLeft <= 30;
 
   return {
     ...product,
