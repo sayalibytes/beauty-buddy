@@ -1,3 +1,6 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
 .modal {
     position: fixed;
     top: 50%;
@@ -44,9 +47,9 @@
   }
   
   .modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    @include flex-row (flex-end, center);
+    gap: 1rem;
+    padding: 1rem;
   }
   
   .add-btn,
@@ -65,5 +68,23 @@
   
   .cancel-btn {
     background-color: #f44336;
+  }
+
+  .submit-btn{
+    background-color: rgb(0, 106, 255);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  label{
+    padding: 0.5rem;
+
+  }
+
+  .display-form{
+    @include flex-row (flex-start, center);
   }
   

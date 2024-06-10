@@ -1,20 +1,41 @@
-import './Header.scss';
-import { Link } from 'react-router-dom';
-import bbLogo from '../../assets/images/bb_logo.png';
+import "./Header.scss";
+import { NavLink } from "react-router-dom";
+import bbLogo from "../../assets/images/bb_logo.png";
 
-function Header () {
-    return (
-      <div className="main-page">
-        <header className="main-page__header">
-          <img src={bbLogo} alt="Beauty Buddy Logo" className="main-page__logo" />
-          <nav className="main-page__nav">
-            <Link to="/home" className="main-page__link">Home</Link>
-            <Link to="/routine" className="main-page__link">Routines</Link>
-            <Link to="/products" className="main-page__link">Product Tracking</Link>
-          </nav>
-        </header>
-        </div>
-    );
+function Header() {
+  return (
+    <div className="main">
+      <header className="main__header">
+        <img className="main__logo" src={bbLogo} alt="Beauty Buddy Logo" />
+        <nav className="main__nav">
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? "main__link main__link--active" : "main__link"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/routine"
+            className={({ isActive }) =>
+              isActive ? "main__link main__link--active" : "main__link"
+            }
+          >
+            Routines
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive ? "main__link main__link--active" : "main__link"
+            }
+          >
+            Products
+          </NavLink>
+        </nav>
+      </header>
+    </div>
+  );
 }
 
 export default Header;

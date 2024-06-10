@@ -17,7 +17,7 @@ function GetStarted() {
       </div>
       <div className="bb__welcome">
 
-      <img className="bb__logo" src={getStarted} alt="get-started" />
+      <img className="bb__img" src={getStarted} alt="get-started" />
       </div>
       <button className="bb__continue" onClick={handleContinueClick}>
         Let's get started

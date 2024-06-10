@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as *;
 
 @mixin font-style ($font-family,$font-size){
   font-family: $font-family;
@@ -10,16 +10,20 @@
     padding-bottom: 1rem;
 }
 
-@mixin flex-row ($justify-content, $align-item){
+@mixin flex-row ($justify-content, $align-items){
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
 }
 
-@mixin flex-column ($justify-content, $align-item) {
+@mixin flex-column ($justify-content, $align-items) {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
 }
 
 

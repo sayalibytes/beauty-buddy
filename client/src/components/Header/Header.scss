@@ -1,0 +1,41 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.main {
+  padding: 0.5rem 0;
+  background-color: $background-primary;
+  color: $primary-text-color;
+
+  &__header {
+    @include flex-row(space-between, center);
+    margin: 0% 5%;
+  }
+
+  &__logo {
+    width: 4rem;
+  }
+
+  &__nav {
+    @include flex-row(space-evenly, center);
+    gap: 1rem;
+  }
+  &__link {
+    @include font-style($medium-font, 1rem);
+    text-decoration: none;
+    color: $primary-text-color;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $highlight-secondary-color;
+      text-decoration: underline;
+      text-decoration-color: $highlight-secondary-color;
+      text-underline-offset: 1rem;
+    }
+  }
+
+  &__link--active {
+    text-decoration: underline;
+    text-decoration-color: $highlight-secondary-color;
+    text-underline-offset: 1rem;
+  }
+}

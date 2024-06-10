@@ -11,20 +11,20 @@ function RoutineModal({
   onRequestClose,
   onSubmit,
   initialData = { title: "", products: [""] },
-  isEdit = false
+  isEdit = false,
 }) {
   const [title, setTitle] = useState(initialData.title);
   const [products, setProducts] = useState(initialData.products);
 
   useEffect(() => {
     if (initialData.title !== title) {
-        setTitle(initialData.title);
-      }
-      if (JSON.stringify(initialData.products) !== JSON.stringify(products)) {
-        setProducts(initialData.products);
-      }
-    }, [initialData.title, initialData.products, title, products]);  
-    
+      setTitle(initialData.title);
+    }
+    if (JSON.stringify(initialData.products) !== JSON.stringify(products)) {
+      setProducts(initialData.products);
+    }
+  }, [initialData.title, initialData.products, title, products]);
+
   const handleProductChange = (index, value) => {
     const newProducts = [...products];
     newProducts[index] = value;
@@ -54,26 +54,29 @@ function RoutineModal({
       className="modal"
       overlayClassName="overlay"
     >
-      <div className="add-routine">
-      <h2>{isEdit ? "Edit Routine" : "Add Routine"}</h2>
+      <div className="action">
+        <h2 className="action__title">
+          {isEdit ? "Edit Routine" : "Add Routine"}
+        </h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>
-              Routine Name
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </label>
+          <div className="action__sec">
+            <label >Routine Name</label>
+           
+            <input
+              className="action__input"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
           </div>
           <div>
-            <label>
-              Add Product
+            <label className="action__label">Add Product</label>
+            <div className="action__section">
               {products.map((product, index) => (
                 <div key={index} className="product-input">
                   <input
+                    className="action__input"
                     type="text"
                     value={product}
                     onChange={(e) => handleProductChange(index, e.target.value)}
@@ -82,23 +85,26 @@ function RoutineModal({
                   {products.length > 1 && (
                     <button
                       type="button"
-                      className="remove-btn"
+                      className="action__remove"
                       onClick={() => handleRemoveProduct(index)}
                     >
-                      <FontAwesomeIcon icon={faTrash} />
+                      <FontAwesomeIcon
+                        className="action__delete"
+                        icon={faTrash}
+                      />
                     </button>
                   )}
                 </div>
               ))}
-            </label>
 
-            <button
-              type="button"
-              className="add-btn"
-              onClick={handleAddProduct}
-            >
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
+              <button
+                type="button"
+                className="add-btn"
+                onClick={handleAddProduct}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </button>
+            </div>
           </div>
 
           <div className="modal-buttons">
@@ -109,7 +115,9 @@ function RoutineModal({
             >
               <FontAwesomeIcon icon={faTimes} /> Cancel
             </button>
-            <button type="submit">{isEdit ? "Save Changes" : "Add Routine"}</button>
+            <button type="submit" className="submit-btn">
+              {isEdit ? "Save Changes" : "Add Routine"}
+            </button>
           </div>
         </form>
       </div>

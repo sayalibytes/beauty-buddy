@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getQuestionnaire } from "../../utilities/api";
 import "./Questionnaire.scss";
+import bbLogo from '../../assets/images/bb_logo.png';
 
 function Questionnaire({ setSkinType }) {
   const [questions, setQuestions] = useState([]);
@@ -97,6 +98,8 @@ function Questionnaire({ setSkinType }) {
 
   return (
     <div className="questionnaire">
+      <img className="logo" src={bbLogo} alt="logo" />
+
       {questions.length > 0 && currentQuestion && (
         <>
           <h2 className="questionnaire__title">
@@ -107,7 +110,7 @@ function Questionnaire({ setSkinType }) {
             {currentQuestion.options.map((option, index) => (
               <button
                 key={index}
-                className="questionnaire__option"
+                className="questionnaire__button"
                 onClick={() => handleOptionClick(option)}
               >
                 {option}
