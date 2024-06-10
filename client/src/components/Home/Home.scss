@@ -23,6 +23,8 @@
 
       &__title{
         @include font-style($bold-font,1.25rem);
+        margin-top: 0;
+        padding-top: 1rem;
       }
 
       &__add-button{
