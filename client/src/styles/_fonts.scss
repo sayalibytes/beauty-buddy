@@ -1,0 +1,14 @@
+@use './mixins' as *;
+@use './variables' as *;
+
+@font-face {
+    font-family: "Titillium-regular";
+    src: url(../../assets/fonts/TitilliumWeb-Regular.woff) format(woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Titillium-bold";
+    src: url(../../assets/fonts/TitilliumWeb-SemiBold.woff) format(woff);
+    font-weight: 600;
+}
