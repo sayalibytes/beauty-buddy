@@ -1,19 +1,17 @@
+@use "../../styles/mixins" as *;
+
 .bb{
-    background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  background-color: $background-primary;
+  @include flex-column (center, center);
+  color: $primary-text-color;
 
   &__title{
+    @include font-style ($demi-font, 2rem);
     margin: 0;
-    font-size: 2rem;
   }
   &__tagline{
-    color: gainsboro;
-    font-size: 0.875rem;
+    @include font-style ($regular-font, 0.875rem);
+    color: $secondary-text-color;
     margin: 0.5rem;
   }
   &__logo{
@@ -22,7 +20,7 @@
   }
 
   &__heading{
-    font-size: 2.25rem;
+    @include font-style ($demi-font, 2.25rem);
     margin: 1rem 2rem 0.5rem 2rem;
   }
   &__text{
@@ -33,17 +31,17 @@
   }
 
   &__continue {
-    color: white;
-    font-size: 1rem;
-    background-color: #FF5757;
+    @include font-style ($regular-font, 1rem);
+    color: $primary-text-color;
+    background-color: $logo-primary-color;
     border: none;
-    border-radius: 1.5625rem;
+    border-radius: 1rem;
     padding: 1rem;
-    width: 80%;
+    width: 15rem;
     margin-top: 2rem;
 
     &:hover {
-        background-color: #FFCF35;
+        background-color: $logo-secondary-color;
     }
   }
 }

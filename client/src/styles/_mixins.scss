@@ -1,0 +1,36 @@
+@import './variables';
+
+@mixin font-style ($font-family,$font-size){
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+@mixin padding{
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+@mixin flex-row ($justify-content, $align-item){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin flex-column ($justify-content, $align-item) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+      @content;
+    }
+  }
