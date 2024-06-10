@@ -1,0 +1,44 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.logo{
+    width: 10rem;
+}
+
+.questionnaire {
+  background-color: $background-primary;
+  @include flex-column(center, center);
+  color: $primary-text-color;
+  min-height: 100vh;
+  padding: 5% ;
+
+  &__title {
+    @include font-style ($bold-font, 1.5rem);
+    margin-bottom: 0rem;
+  }
+
+  &__description {
+    @include font-style ($regular-font, 0.625rem);
+    margin: 3% 10%;
+  }
+
+  &__options {
+    @include flex-column (center, center);
+  }
+
+  &__button{
+    margin: 0.5rem 0;
+    width: 15rem;
+    padding: 0.5rem;
+    color: $primary-text-color;
+    background-color: $background-primary;
+    border: .0625rem solid $highlight-secondary-color;
+    border-radius: 1.25rem;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        background-color: $highlight-secondary-color;
+        transform: scale(1.05);
+    }
+  }
+}

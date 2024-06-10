@@ -8,6 +8,7 @@ import {
 import Header from "../Header/Header";
 import RoutineModal from "../RoutineModal/RoutineModal";
 import "./Routines.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Routines() {

@@ -55,39 +55,49 @@ const Home = ({ skinType }) => {
   };
 
   return (
-    <div className="bb">
+    <div className="main-page">
       <Header />
-      <Calendar />
-      <h1 className="main-page__heading">Your Skincare Dashboard</h1>
+      
+      <h1 className="main-page__heading">Your Personalised Skincare Dashboard</h1>
       <p className="main-page__description">Your skin type is {skinType}</p>
+
+      <Calendar />
+
       <div className="main-page__content">
         <div className="main-page__section">
-          <div className="main__display">
-          <h2 className="main__title">My Routines</h2>
-          <button className="main__add-button" onClick={() => setRoutineModalIsOpen(true)}>+</button>
+          <div className="main-page__display">
+          <h2 className="main-page__title">My Routines</h2>
+          <button className="main-page__add-button" onClick={() => setRoutineModalIsOpen(true)}>+</button>
           </div>
-          <ul className="main__list">
+          <ul className="main-page__list">
             {routines.map((routine) => (
-              <li className="main__item" key={routine.id}>
-                <input type="checkbox" />
-                <h3 className="main__item-title">{routine.title}</h3>
-                <p className="main__item-total">
-                  ({routine.products.length} products)
+              <li className="main-page__item" key={routine.id}>
+                <label className="main-page__checkbox-label">
+                  <input type="checkbox" className="main-page__checkbox" />
+                  <span className="main-page__custom-checkbox"></span>
+                <div className="main-page__item-display">
+                <h3 className="main-page__item-title">{routine.title}</h3>
+                <p className="main-page__item-total">
+                  {routine.products.length} products
                 </p>
+                </div>
+                </label>
               </li>
             ))}
           </ul>
         </div>
         <div className="main-page__section">
-        <div className="main__display">
-          <h2 className="main__title">My Products</h2>
-          <button className="main__add-button" onClick={() => setProductModalIsOpen(true)}>+</button>
+        <div className="main-page__display">
+          <h2 className="main-page__title">My Products</h2>
+          <button className="main-page__add-button" onClick={() => setProductModalIsOpen(true)}>+</button>
           </div>
-          <ul className="main__list">
+          <ul className="main-page__list">
           {products.map((product) => (
-            <li className="main__item" key={product.id}>
-              <h3 className="main__item-title">{product.name}</h3>
-              <p className="main__item-total">Use before: {product.displayDate}</p>
+            <li className="main-page__item-display" key={product.id}>
+              <div className="main-page__products">
+              <h3 className="main-page__item-title">{product.name}</h3>
+              <p className="main-page__item-total">Use before: {product.displayDate}</p>
+              </div>
             </li>
           ))}
         </ul>

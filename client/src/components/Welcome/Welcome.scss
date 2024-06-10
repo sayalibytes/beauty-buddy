@@ -1,47 +1,56 @@
-@use "../../styles/mixins" as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
 .bb{
   background-color: $background-primary;
   @include flex-column (center, center);
   color: $primary-text-color;
+  min-height: 100vh;
 
   &__title{
-    @include font-style ($demi-font, 2rem);
-    margin: 0;
+    @include font-style ($bold-font, 2.25rem);
+    margin-bottom: 1rem;
   }
+
   &__tagline{
     @include font-style ($regular-font, 0.875rem);
     color: $secondary-text-color;
     margin: 0.5rem;
   }
+
   &__logo{
-    margin-top: 0.5rem;
+    margin: 0.5rem;
     width: 15rem;
   }
 
   &__heading{
-    @include font-style ($demi-font, 2.25rem);
-    margin: 1rem 2rem 0.5rem 2rem;
+    @include font-style ($bold-font, 2rem);
+    margin: 1rem 2rem;
   }
+
   &__text{
     @extend .bb__tagline;
   }
+
   &__personal{
     @extend .bb__tagline;
   }
 
   &__continue {
-    @include font-style ($regular-font, 1rem);
+    @include font-style ($medium-font, 1rem);
     color: $primary-text-color;
     background-color: $logo-primary-color;
     border: none;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     padding: 1rem;
-    width: 15rem;
+    width: 18.75rem;
     margin-top: 2rem;
+    align-self: center;
+    transition: 0.2s ease-in-out;
 
     &:hover {
         background-color: $logo-secondary-color;
+        transform: scale(1.05);
     }
   }
 }

@@ -9,7 +9,7 @@ import Header from "../Header/Header";
 import ProductModal from "../ProductModal/ProductModal";
 import "./ProductTracking.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ProductTracking() {
   const [products, setProducts] = useState([]);
