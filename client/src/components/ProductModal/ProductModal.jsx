@@ -16,7 +16,7 @@ function ProductModal({
     lifeAfterOpening: "",
     expiryDate: "",
   },
-  isEdit = false
+  isEdit = false,
 }) {
   const [name, setName] = useState(initialData.name);
   const [startDate, setStartDate] = useState(initialData.startDate);
@@ -48,30 +48,33 @@ function ProductModal({
     >
       <h2>{isEdit ? "Edit Product" : "Add Product"}</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Open Date
+        <div className="display-form">
+        <label>Name</label>
+        <input
+          type="text"
+          placeholder="product name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        </div>
+        <div className="display-form">
+          <label>Open Date</label>
           <input
             type="text"
             value={startDate}
-            placeholder="DD-MM-YYYY"
+            placeholder="dd-mm-yyyy"
             onChange={(e) => setStartDate(e.target.value)}
             required
           />
-        </label>
-        <label className="shelf-life-label">
-          <span>
-            <FontAwesomeIcon icon={faJar} className="shelf-life-icon" />
-            Life After Opening
-          </span>
+        </div>
+        <div className="display-form">
+          <label className="shelf-life-label">
+            <span>
+              <FontAwesomeIcon icon={faJar} className="shelf-life-icon" />
+              Life After Opening
+            </span>
+          </label>
           <input
             type="text"
             value={lifeAfterOpening}
@@ -79,22 +82,25 @@ function ProductModal({
             placeholder="e.g., 12 months"
             required
           />
-        </label>
-        <label>
-          Expiry Date
+        </div>
+        <div className="display-form">
+          <label>Expiry Date</label>
           <input
             type="text"
             value={expiryDate}
-            placeholder="DD-MM-YYYY"
+            placeholder="dd-mm-yyyy"
             onChange={(e) => setExpiryDate(e.target.value)}
             required
           />
-        </label>
+        </div>
+
         <div className="modal-buttons">
           <button type="button" className="cancel-btn" onClick={onRequestClose}>
             <FontAwesomeIcon icon={faTimes} /> Cancel
           </button>
-          <button type="submit">{isEdit ? "Save Changes" : "Add Product"}</button>
+          <button type="submit" className="submit-btn">
+            {isEdit ? "Save Changes" : "Add Product"}
+          </button>
         </div>
       </form>
     </Modal>
