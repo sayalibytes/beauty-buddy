@@ -1,0 +1,13 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+  .pt{
+    background-color: $background-primary;
+    color: $primary-text-color;
+    min-height: 100vh;
+  }
+    
+.button-display{
+    @include flex-row (space-between, center);
+    margin: 0 5%;
+}

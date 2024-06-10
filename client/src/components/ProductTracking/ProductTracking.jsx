@@ -74,27 +74,30 @@ function ProductTracking() {
   };
 
   return (
-    <div className="bb">
+    <div className="pt">
       <Header />
       <div className="product-tracking">
-        <div className="main__display">
-          <h2 className="main__title">Track Product Expiry</h2>
-          <button onClick={handleAddProduct}>
+        <div className="main-page__display">
+          <h2 className="main-page__title">Track Product Expiry</h2>
+          <button className="main-page__add-button" onClick={handleAddProduct}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
-        <ul>
+        <ul className="main-page__list">
           {products.map((product) => (
-            <li key={product.id}>
-              <span>
-                {product.name} (Use before: {product.displayDate})
-              </span>
+            <li className="main-page__item-display" key={product.id}>
+              <div className="button-display">
+              <div className="main-page__products">
+              <h3 className="main-page__item-title">{product.name}</h3>
+              <p className="main-page__item-total">Use before: {product.displayDate}</p>
+              </div>
               <button onClick={() => handleEditProduct(product)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button onClick={() => handleDeleteProduct(product.id)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
+              </div>
             </li>
           ))}
         </ul>

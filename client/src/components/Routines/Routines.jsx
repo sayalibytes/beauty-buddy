@@ -71,27 +71,32 @@ function Routines() {
   };
 
   return (
-    <div className="bb">
+    <div>
       <Header />
       <div className="routines">
-        <div className="main__display">
-          <h2 className="main__title">Routines</h2>
-          <button onClick={handleAddRoutine}>
+        <div className="main-page__display">
+          <h2 className="main-page__title">Routines</h2>
+          <button className="main-page__add-button" onClick={handleAddRoutine}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
-        <ul>
+        <ul className="main-page__list">
           {routines.map((routine) => (
-            <li key={routine.id}>
-              <span>
-                {routine.title} ({routine.products.length})
-              </span>
+            <li className="main-page__item" key={routine.id}>
+              <div className="main-page__item-display">
+              <h3 className="page__title">{routine.title}</h3>
+              <div className="page__products">
+              <p className="page__items">{routine.products}</p>
+              </div>
+              </div>
+              <div>
               <button onClick={() => handleEditRoutine(routine)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button onClick={() => handleDeleteRoutine(routine.id)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
+              </div>
             </li>
           ))}
         </ul>

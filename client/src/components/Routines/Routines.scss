@@ -1,0 +1,25 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.routines{
+    background-color: $background-primary;
+    min-height: 100vh;
+    color: $primary-text-color;
+    margin: 0;
+}
+
+.page{
+
+    &__title{
+        @include font-style ($medium-font, 1.25rem);
+    }
+
+    &__products{
+        @include flex-column (flex-start, flex-start);
+    }
+
+    &__items{
+        @include flex-column (flex-start, flex-start);
+    @include font-style ($regular-font, 0.75rem)
+}
+}
