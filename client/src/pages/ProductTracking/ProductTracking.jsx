@@ -5,8 +5,8 @@ import {
   updateProductTracking,
   deleteProductTracking,
 } from "../../utilities/api";
-import Header from "../Header/Header";
-import ProductModal from "../ProductModal/ProductModal";
+import Header from "../../components/Header/Header";
+import ProductModal from "../../components/ProductModal/ProductModal";
 import "./ProductTracking.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";

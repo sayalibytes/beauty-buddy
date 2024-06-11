@@ -5,8 +5,8 @@ import {
   updateRoutine,
   deleteRoutine,
 } from "../../utilities/api";
-import Header from "../Header/Header";
-import RoutineModal from "../RoutineModal/RoutineModal";
+import Header from "../../components/Header/Header";
+import RoutineModal from "../../components/RoutineModal/RoutineModal";
 import "./Routines.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
