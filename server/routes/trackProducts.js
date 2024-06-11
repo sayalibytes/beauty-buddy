@@ -11,16 +11,18 @@ const PRODUCTS_FILE_PATH = path.join(
   "trackProducts.json"
 );
 
-const formatDate = (date) => moment(date, "YYYY-MM-DD").format("DD-MM-YYYY");
+const formatDate = (date, format = "DD-MM-YYYY") => {
+  return moment(date, format).format(format);
+}
 
 const calculateExpiryStatus = (product) => {
-  const startDate = moment(product.startDate, "YYYY-MM-DD");
+  const startDate = moment(product.startDate, "DD-MM-YYYY");
   const lifeAfterOpening = parseInt(product.LifeAfterOpening.split(" ")[0]);
 
   const useBeforeDate = startDate.clone().add(lifeAfterOpening, "months");
   const formattedUseBeforeDate = useBeforeDate.format("DD-MM-YYYY");
 
-  const expiryDate = moment(product.expiryDate, "YYYY-MM-DD");
+  const expiryDate = moment(product.expiryDate, "DD-MM-YYYY");
   const formattedExpiryDate = expiryDate.format("DD-MM-YYYY");
 
   // Determine the earlier date
@@ -36,7 +38,7 @@ const calculateExpiryStatus = (product) => {
 
   return {
     ...product,
-    startDate: formatDate(product.startDate),
+    startDate: formatDate(product.startDate,  "DD-MM-YYYY"),
     displayDate,
     isExpiringSoon,
   };
@@ -60,8 +62,8 @@ router.post("/", (req, res) => {
   }
 
   const products = readJsonFile(PRODUCTS_FILE_PATH);
-  const formattedStartDate = formatDate(startDate);
-  const formattedExpiryDate = formatDate(expiryDate);
+  const formattedStartDate = formatDate(startDate, "DD-MM-YYYY");
+  const formattedExpiryDate = formatDate(expiryDate, "DD-MM-YYYY");
 
   const newProduct = {
     id: products.length + 1,
@@ -94,8 +96,8 @@ router.put("/:id", (req, res) => {
   const products = readJsonFile(PRODUCTS_FILE_PATH);
   const productIndex = products.findIndex((p) => p.id === id);
   if (productIndex !== -1) {
-    const formattedStartDate = formatDate(startDate);
-    const formattedExpiryDate = formatDate(expiryDate);
+    const formattedStartDate = formatDate(startDate, "DD-MM-YYYY");
+    const formattedExpiryDate = formatDate(expiryDate, "DD-MM-YYYY");
 
     products[productIndex] = {
       id,

@@ -2,23 +2,23 @@
   {
     "id": 1,
     "name": "Cleanser",
-    "startDate": "2024-01-01",
+    "startDate": "01-01-2024",
     "LifeAfterOpening": "12 months",
-    "expiryDate": "2025-12-31"
+    "expiryDate": "31-12-2025"
   },
   {
     "id": 2,
     "name": "Moisturiser",
-    "startDate": "2024-01-01",
+    "startDate": "01-01-2024",
     "LifeAfterOpening": "6 months",
-    "expiryDate": "2025-08-01"
+    "expiryDate": "01-08-2025"
   },
   {
     "id": 3,
     "name": "Sunscreen",
-    "startDate": "2024-02-15",
+    "startDate": "15-02-2024",
     "LifeAfterOpening": "18 months",
-    "expiryDate": "2026-09-01"
+    "expiryDate": "01-09-2026"
   },
   {
     "id": 4,
