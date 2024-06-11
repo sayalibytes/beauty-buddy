@@ -91,10 +91,10 @@ function ProductTracking() {
               <h3 className="main-page__item-title">{product.name}</h3>
               <p className="main-page__item-total">Use before: {product.displayDate}</p>
               </div>
-              <button onClick={() => handleEditProduct(product)}>
+              <button className="page__button page__button--edit" onClick={() => handleEditProduct(product)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
-              <button onClick={() => handleDeleteProduct(product.id)}>
+              <button className="page__button page__button--delete" onClick={() => handleDeleteProduct(product.id)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
               </div>

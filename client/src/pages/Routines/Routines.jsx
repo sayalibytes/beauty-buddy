@@ -82,20 +82,28 @@ function Routines() {
         </div>
         <ul className="main-page__list">
           {routines.map((routine) => (
-            <li className="main-page__item" key={routine.id}>
+            <li className="page__item" key={routine.id}>
               <div className="main-page__item-display">
-              <h3 className="page__title">{routine.title}</h3>
-              <div className="page__products">
-              <p className="page__items">{routine.products}</p>
+                <h3 className="page__title">{routine.title}</h3>
+                {routine.products.map((product, index) => (
+                  <p className="page__items" key={index}>
+                    {product}
+                  </p>
+                ))}
               </div>
-              </div>
-              <div>
-              <button onClick={() => handleEditRoutine(routine)}>
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-              <button onClick={() => handleDeleteRoutine(routine.id)}>
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
+              <div className="page__buttons">
+                <button
+                  className="page__button page__button--edit"
+                  onClick={() => handleEditRoutine(routine)}
+                >
+                  <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button
+                  className="page__button page__button--delete"
+                  onClick={() => handleDeleteRoutine(routine.id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
               </div>
             </li>
           ))}
