@@ -13,28 +13,28 @@ function ProductModal({
   initialData = {
     name: "",
     startDate: "",
-    lifeAfterOpening: "",
+    LifeAfterOpening: "",
     expiryDate: "",
   },
   isEdit = false,
 }) {
-  const [name, setName] = useState(initialData.name);
-  const [startDate, setStartDate] = useState(initialData.startDate);
-  const [lifeAfterOpening, setLifeAfterOpening] = useState(
-    initialData.lifeAfterOpening
+  const [name, setName] = useState(initialData.name || "");
+  const [startDate, setStartDate] = useState(initialData.startDate || "");
+  const [LifeAfterOpening, setLifeAfterOpening] = useState(
+    initialData.LifeAfterOpening || ""
   );
-  const [expiryDate, setExpiryDate] = useState(initialData.expiryDate);
+  const [expiryDate, setExpiryDate] = useState(initialData.expiryDate || "");
 
   useEffect(() => {
-    setName(initialData.name);
-    setStartDate(initialData.startDate);
-    setLifeAfterOpening(initialData.lifeAfterOpening);
-    setExpiryDate(initialData.expiryDate);
-  }, [initialData]);
+    setName(initialData.name || "");
+    setStartDate(initialData.startDate || "");
+    setLifeAfterOpening(initialData.LifeAfterOpening || "");
+    setExpiryDate(initialData.expiryDate || "");
+  }, [isOpen, initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, startDate, lifeAfterOpening, expiryDate });
+    onSubmit({ name, startDate, LifeAfterOpening, expiryDate });
     onRequestClose();
   };
 
@@ -46,11 +46,13 @@ function ProductModal({
       className="modal"
       overlayClassName="overlay"
     >
-      <h2>{isEdit ? "Edit Product" : "Add Product"}</h2>
+      <div className="action">
+      <h2 className="action__title">{isEdit ? "Edit Product" : "Add Product"}</h2>
       <form onSubmit={handleSubmit}>
-        <div className="display-form">
-        <label>Name</label>
+        <div className="action__sec">
+        <label className="action__label">Name</label>
         <input
+        className="action__input"
           type="text"
           placeholder="product name"
           value={name}
@@ -58,9 +60,10 @@ function ProductModal({
           required
         />
         </div>
-        <div className="display-form">
-          <label>Open Date</label>
+        <div className="action__sec">
+          <label className="action__label">Open Date</label>
           <input
+          className="action__input"
             type="text"
             value={startDate}
             placeholder="dd-mm-yyyy"
@@ -68,24 +71,24 @@ function ProductModal({
             required
           />
         </div>
-        <div className="display-form">
+        <div className="action__sec">
           <label className="shelf-life-label">
-            <span>
               <FontAwesomeIcon icon={faJar} className="shelf-life-icon" />
               Life After Opening
-            </span>
           </label>
           <input
+          className="action__input"
             type="text"
-            value={lifeAfterOpening}
+            value={LifeAfterOpening}
             onChange={(e) => setLifeAfterOpening(e.target.value)}
             placeholder="e.g., 12 months"
             required
           />
         </div>
-        <div className="display-form">
+        <div className="action__sec">
           <label>Expiry Date</label>
           <input
+          className="action__label"
             type="text"
             value={expiryDate}
             placeholder="dd-mm-yyyy"
@@ -103,6 +106,7 @@ function ProductModal({
           </button>
         </div>
       </form>
+      </div>
     </Modal>
   );
 }

@@ -19,5 +19,12 @@
     "startDate": "2024-03-01",
     "LifeAfterOpening": "18 months",
     "expiryDate": "2026-09-01"
+  },
+  {
+    "id": 4,
+    "name": "toner",
+    "startDate": "20-06-2012",
+    "LifeAfterOpening": "6 months",
+    "expiryDate": "20-09-2025"
   }
 ]

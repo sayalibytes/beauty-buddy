@@ -85,7 +85,7 @@ function ProductTracking() {
         </div>
         <ul className="main-page__list">
           {products.map((product) => (
-            <li className="main-page__item-display" key={product.id}>
+            <li key={product.id} className="main-page__item-display" >
               <div className="button-display">
               <div className="main-page__products">
               <h3 className="main-page__item-title">{product.name}</h3>
