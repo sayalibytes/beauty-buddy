@@ -1,25 +1,45 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-.routines{
+.routines {
+  background-color: $background-primary;
+  min-height: 100vh;
+  color: $primary-text-color;
+  margin: 0;
+}
+
+.page {
+  &__title {
+    @include font-style($medium-font, 1.25rem);
+  }
+
+  &__item {
+    @include flex-row(space-between, baseline);
+    @include font-style($regular-font, 0.75rem);
+    gap: 0.5rem;
+  }
+
+  &__buttons{
+    margin-right: 5%;
+  }
+
+  &__button {
     background-color: $background-primary;
-    min-height: 100vh;
-    color: $primary-text-color;
-    margin: 0;
-}
+    border: none;
+    font-size: 1.25rem;
+    padding: 0 0.75rem;
+    transition: 0.1s ease-in-out;
 
-.page{
-
-    &__title{
-        @include font-style ($medium-font, 1.25rem);
+    &:hover {
+        transform: scale(1.1);
     }
 
-    &__products{
-        @include flex-column (flex-start, flex-start);
+    &--edit{
+        color: $highlight-secondary-color;
     }
 
-    &__items{
-        @include flex-column (flex-start, flex-start);
-    @include font-style ($regular-font, 0.75rem)
-}
+    &--delete{
+        color: $logo-primary-color;
+    }
+  }
 }
