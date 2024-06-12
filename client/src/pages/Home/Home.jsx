@@ -67,10 +67,13 @@ const Home = ({ skinType }) => {
       <Calendar />
 
       <div className="main-page__content">
+        
         <div className="main-page__section">
-          <Link to="/routine" className="main-page__section-link">
             <div className="main-page__display">
+            <Link to="/routine" className="main-page__section-link">
+
               <h2 className="main-page__title">My Routines</h2>
+              </Link>
               <button
                 className="main-page__add-button"
                 onClick={() => setRoutineModalIsOpen(true)}
@@ -94,7 +97,7 @@ const Home = ({ skinType }) => {
                 </li>
               ))}
             </ul>
-          </Link>
+          
         </div>
         <div className="main-page__section">
           <Link to="/products" className="main-page__section-link">
