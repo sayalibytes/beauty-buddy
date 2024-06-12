@@ -46,6 +46,7 @@ const calculateExpiryStatus = (product) => {
 router.get("/", (req, res) => {
   const products = readJsonFile(PRODUCTS_FILE_PATH);
   const productsWithExpiryStatus = products.map(calculateExpiryStatus);
+  console.log('GET products response:', productsWithExpiryStatus);  // Debug log
   res.json(productsWithExpiryStatus);
 });
 
@@ -72,11 +73,13 @@ router.post("/", (req, res) => {
     expiryDate: formattedExpiryDate,
   };
 
-  products.push(newProduct);
+  const productWithExpiryStatus = calculateExpiryStatus(newProduct);
+  products.push(productWithExpiryStatus);
   writeJsonFile(PRODUCTS_FILE_PATH, products);
+  console.log('POST response:', productWithExpiryStatus);  // Debug log
   res
     .status(201)
-    .json({ message: "Product tracking added", product: newProduct });
+    .json({ message: "Product tracking added", product: productWithExpiryStatus });
 });
 
 router.put("/:id", (req, res) => {
@@ -106,10 +109,15 @@ router.put("/:id", (req, res) => {
       expiryDate: formattedExpiryDate,
     };
 
+    const productWithExpiryStatus = calculateExpiryStatus(updatedProduct);
+    products[productIndex] = productWithExpiryStatus;
+
     writeJsonFile(PRODUCTS_FILE_PATH, products);
+    console.log('PUT response:', productWithExpiryStatus);  // Debug log
+
     res.json({
       message: "Product tracking updated",
-      product: products[productIndex],
+      product: productWithExpiryStatus,
     });
   } else {
     res.status(404).json({ message: "Product not found" });

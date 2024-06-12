@@ -55,8 +55,9 @@ function ProductTracking() {
           editingProduct.id,
           product
         );
+        console.log("Updated product response:", response.data.product); 
         setProducts(
-          products.map((p) => (p.id === editingProduct.id ? response.data : p))
+          products.map((p) => (p.id === editingProduct.id ? response.data.product : p))
         );
       } catch (error) {
         console.error("Error updating product:", error);
@@ -64,7 +65,8 @@ function ProductTracking() {
     } else {
       try {
         const response = await addProductTracking(product);
-        setProducts([...products, response.data]);
+        console.log("Added product response:", response.data.product); 
+        setProducts([...products, response.data.product]);
       } catch (error) {
         console.error("Error adding product:", error);
       }
