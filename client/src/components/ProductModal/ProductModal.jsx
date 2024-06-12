@@ -18,18 +18,16 @@ function ProductModal({
   },
   isEdit = false,
 }) {
-  const [name, setName] = useState(initialData.name || "");
-  const [startDate, setStartDate] = useState(initialData.startDate || "");
-  const [LifeAfterOpening, setLifeAfterOpening] = useState(
-    initialData.LifeAfterOpening || ""
-  );
-  const [expiryDate, setExpiryDate] = useState(initialData.expiryDate || "");
+  const [name, setName] = useState(initialData.name);
+  const [startDate, setStartDate] = useState(initialData.startDate);
+  const [LifeAfterOpening, setLifeAfterOpening] = useState(initialData.LifeAfterOpening);
+  const [expiryDate, setExpiryDate] = useState(initialData.expiryDate);
 
   useEffect(() => {
-    setName(initialData.name || "");
-    setStartDate(initialData.startDate || "");
-    setLifeAfterOpening(initialData.LifeAfterOpening || "");
-    setExpiryDate(initialData.expiryDate || "");
+    setName(initialData.name);
+    setStartDate(initialData.startDate);
+    setLifeAfterOpening(initialData.LifeAfterOpening);
+    setExpiryDate(initialData.expiryDate);
   }, [isOpen, initialData]);
 
   const handleSubmit = (e) => {
@@ -54,7 +52,7 @@ function ProductModal({
         <input
         className="action__input"
           type="text"
-          placeholder="product name"
+          placeholder="Product name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -64,9 +62,8 @@ function ProductModal({
           <label className="action__label">Open Date</label>
           <input
           className="action__input"
-            type="text"
+            type="date"
             value={startDate}
-            placeholder="dd-mm-yyyy"
             onChange={(e) => setStartDate(e.target.value)}
             required
           />
@@ -86,12 +83,11 @@ function ProductModal({
           />
         </div>
         <div className="action__sec">
-          <label>Expiry Date</label>
+          <label className="action__label">Expiry Date</label>
           <input
-          className="action__label"
-            type="text"
+          className="action__input"
+            type="date"
             value={expiryDate}
-            placeholder="dd-mm-yyyy"
             onChange={(e) => setExpiryDate(e.target.value)}
             required
           />

@@ -23,7 +23,7 @@ function RoutineModal({
     if (JSON.stringify(initialData.products) !== JSON.stringify(products)) {
       setProducts(initialData.products);
     }
-  }, [isOpen, initialData]);
+  }, [isOpen, initialData, title, products]);
 
   const handleProductChange = (index, value) => {
     const newProducts = [...products];
