@@ -11,34 +11,33 @@ const PRODUCTS_FILE_PATH = path.join(
   "trackProducts.json"
 );
 
-const formatDate = (date, format = "DD-MM-YYYY") => {
-  return moment(date, format).format(format);
-}
+const formatDate = (date) => moment(date, "YYYY-MM-DD").format("YYYY-MM-DD");
 
 const calculateExpiryStatus = (product) => {
-  const startDate = moment(product.startDate, "DD-MM-YYYY");
+  const startDate = moment(product.startDate, "YYYY-MM-DD");
   const lifeAfterOpening = parseInt(product.LifeAfterOpening.split(" ")[0]);
 
   const useBeforeDate = startDate.clone().add(lifeAfterOpening, "months");
-  const formattedUseBeforeDate = useBeforeDate.format("DD-MM-YYYY");
+  const formattedUseBeforeDate = useBeforeDate.format("YYYY-MM-DD");
 
-  const expiryDate = moment(product.expiryDate, "DD-MM-YYYY");
-  const formattedExpiryDate = expiryDate.format("DD-MM-YYYY");
+  const expiryDate = moment(product.expiryDate, "YYYY-MM-DD");
+  const formattedExpiryDate = expiryDate.format("YYYY-MM-DD");
 
   // Determine the earlier date
   const displayDate = useBeforeDate.isBefore(expiryDate)
     ? formattedUseBeforeDate
     : formattedExpiryDate;
   const currentDate = moment();
-  const timeLeft = moment(displayDate, "DD-MM-YYYY").diff(
+  const timeLeft = moment(displayDate, "YYYY-MM-DD").diff(
     currentDate,
-    "days",
+    "months",
+    true
   );
-  const isExpiringSoon = timeLeft <= 30;
+  const isExpiringSoon = timeLeft <= 1;
 
   return {
     ...product,
-    startDate: formatDate(product.startDate,  "DD-MM-YYYY"),
+    startDate: formatDate(product.startDate),
     displayDate,
     isExpiringSoon,
   };
@@ -62,8 +61,8 @@ router.post("/", (req, res) => {
   }
 
   const products = readJsonFile(PRODUCTS_FILE_PATH);
-  const formattedStartDate = formatDate(startDate, "DD-MM-YYYY");
-  const formattedExpiryDate = formatDate(expiryDate, "DD-MM-YYYY");
+  const formattedStartDate = formatDate(startDate);
+  const formattedExpiryDate = formatDate(expiryDate);
 
   const newProduct = {
     id: products.length + 1,
@@ -96,8 +95,8 @@ router.put("/:id", (req, res) => {
   const products = readJsonFile(PRODUCTS_FILE_PATH);
   const productIndex = products.findIndex((p) => p.id === id);
   if (productIndex !== -1) {
-    const formattedStartDate = formatDate(startDate, "DD-MM-YYYY");
-    const formattedExpiryDate = formatDate(expiryDate, "DD-MM-YYYY");
+    const formattedStartDate = formatDate(startDate);
+    const formattedExpiryDate = formatDate(expiryDate);
 
     products[productIndex] = {
       id,
@@ -121,6 +120,7 @@ router.delete("/:id", (req, res) => {
   const id = Number(req.params.id);
   let products = readJsonFile(PRODUCTS_FILE_PATH);
   products = products.filter((p) => p.id !== id);
+  writeJsonFile(PRODUCTS_FILE_PATH, products);
   res.json({ message: "Product tracking deleted" });
 });
 
