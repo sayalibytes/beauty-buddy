@@ -52,8 +52,9 @@ function Routines() {
     if (editingRoutine) {
       try {
         const response = await updateRoutine(editingRoutine.id, routine);
+
         setRoutines(
-          routines.map((r) => (r.id === editingRoutine.id ? response.data : r))
+          routines.map((r) => (r.id === editingRoutine.id ? response.data.routine : r))
         );
       } catch (error) {
         console.error("Error updating routine:", error);
@@ -61,7 +62,7 @@ function Routines() {
     } else {
       try {
         const response = await addRoutine(routine);
-        setRoutines([...routines, response.data]);
+        setRoutines([...routines, response.data.routine]);
       } catch (error) {
         console.error("Error adding routine:", error);
       }
@@ -85,8 +86,8 @@ function Routines() {
             <li className="page__item" key={routine.id}>
               <div className="main-page__item-display">
                 <h3 className="page__title">{routine.title}</h3>
-                {routine.products.map((product, index) => (
-                  <p className="page__items" key={index}>
+                {routine.products && routine.products.map((product, index) => (
+                  <p className="page__items"  key={`${routine.id}-${index}-${product}`}>
                     {product}
                   </p>
                 ))}

@@ -65,7 +65,6 @@ function ProductTracking() {
     } else {
       try {
         const response = await addProductTracking(product);
-        console.log("Added product response:", response.data.product); 
         setProducts([...products, response.data.product]);
       } catch (error) {
         console.error("Error adding product:", error);

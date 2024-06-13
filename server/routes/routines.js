@@ -5,6 +5,11 @@ const { readJsonFile, writeJsonFile } = require('../utility/utils');
 
 const ROUTINES_FILE_PATH = path.join(__dirname, "..", "data", "routines.json");
 
+const generateUniqueId = (routines) => {
+  const maxId = routines.reduce((max, routine) => Math.max(max, routine.id), 0);
+  return maxId + 1;
+};
+
 router.get('/', (req, res) => {
   const routines = readJsonFile(ROUTINES_FILE_PATH);
   res.json(routines);
@@ -18,7 +23,7 @@ router.post('/', (req, res) => {
   }
 
   const routines = readJsonFile(ROUTINES_FILE_PATH);
-  const newRoutine = { id: routines.length + 1, title, products };
+  const newRoutine = { id: generateUniqueId(routines), title, products };
   routines.push(newRoutine);
   writeJsonFile(ROUTINES_FILE_PATH, routines);
   res.status(201).json({ message: 'Routine added', routine: newRoutine });
