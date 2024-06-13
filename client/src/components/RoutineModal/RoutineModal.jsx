@@ -17,10 +17,8 @@ function RoutineModal({
   const [products, setProducts] = useState(initialData.products);
 
   useEffect(() => {
-    if (initialData.title !== title) {
+    if (isOpen) {
       setTitle(initialData.title);
-    }
-    if (JSON.stringify(initialData.products) !== JSON.stringify(products)) {
       setProducts(initialData.products);
     }
   }, [isOpen, initialData]);
