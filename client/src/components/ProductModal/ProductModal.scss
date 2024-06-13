@@ -41,7 +41,7 @@
   input {
     flex: 1;
     background: $primary-text-color;
-    color: $primary-text-color;
+    color: $background-primary;
     border: 0.0625rem solid $highlight-secondary-color;
 
     &::placeholder {
@@ -51,6 +51,7 @@
     }
     &:focus-visible{
       border: 0.0625rem solid $highlight-secondary-color;
+      color: $background-primary;
     }
 
   }
