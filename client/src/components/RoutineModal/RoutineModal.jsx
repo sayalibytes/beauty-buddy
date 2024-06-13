@@ -57,7 +57,7 @@ function RoutineModal({
           {isEdit ? "Edit Routine" : "Add Routine"}
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="action__sec">
+          <div className="action__secR">
             <label >Routine Name</label>
            
             <input

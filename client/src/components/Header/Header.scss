@@ -24,18 +24,21 @@
     text-decoration: none;
     color: $primary-text-color;
     transition: color 0.3s;
+    padding: 0.25rem;
 
     &:hover {
-      color: $highlight-secondary-color;
-      text-decoration: underline;
-      text-decoration-color: $highlight-secondary-color;
-      text-underline-offset: 1rem;
+      background-color: $highlight-secondary-color;
+      border-radius: 0.25rem;
+        box-shadow: 3px 3px 3px 0 $logo-primary-color, 
+        -3px -3px 3px 0 $logo-secondary-color;
+        transform: scale(1.05);
     }
   }
 
   &__link--active {
-    text-decoration: underline;
-    text-decoration-color: $highlight-secondary-color;
-    text-underline-offset: 1rem;
+    background-color: $highlight-secondary-color;
+        box-shadow: 3px 3px 3px 0 $logo-primary-color, 
+        -3px -3px 3px 0 $logo-secondary-color;
+        border-radius: 0.25rem;
   }
 }

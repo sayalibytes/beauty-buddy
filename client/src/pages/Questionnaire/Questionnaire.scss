@@ -27,8 +27,9 @@
   }
 
   &__button{
+    @include font-style ($regular-font, 1rem);
     margin: 0.5rem 0;
-    width: 15rem;
+    width: 18rem;
     padding: 0.5rem;
     color: $primary-text-color;
     background-color: $background-primary;
@@ -38,6 +39,8 @@
 
     &:hover {
         background-color: $highlight-secondary-color;
+        box-shadow: 3px 3px 3px 0 $logo-primary-color, 
+        -3px -3px 3px 0 $logo-secondary-color;
         transform: scale(1.05);
     }
   }

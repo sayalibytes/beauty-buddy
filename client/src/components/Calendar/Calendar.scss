@@ -6,6 +6,7 @@
     &__title{
       @include font-style ($bold-font, 1.5rem);
         margin-bottom: 0;
+        padding: 1rem;
     }
 
     &__view{
@@ -15,16 +16,21 @@
     }
   
     &__day {
+      @include font-style ($medium-font, 1rem);
       text-align: center;
-      padding: .75rem 1rem;
+      padding: .75rem 1.5rem;
       font-weight: bold;
       display: flex;
       flex-direction: column;
   
       &--today {
-        background-color: rgb(174, 171, 171, .5);
+        background-color: #dd7e25b6;
         border-radius: 50%;
       }
+    }
+
+    &__week{
+      font-size: 1.25rem;
     }
   }
   

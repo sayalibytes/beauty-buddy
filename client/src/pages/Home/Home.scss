@@ -19,6 +19,7 @@
   &__display {
     @include flex-row(space-between, center);
     margin: 0 5%;
+    padding-top: 1rem;
   }
 
   &__title {
@@ -32,13 +33,15 @@
     border: none;
     color: $highlight-secondary-color;
     font-size: 2rem;
-    padding: 0.5rem 1rem;
+    padding: 0 0.5rem;
     transition: 0.1s ease-in-out;
 
     &:hover {
-        // background-color: $highlight-secondary-color;
-        // color: $primary-text-color;
-        // border-radius: 50%;
+      background-color: $highlight-secondary-color;
+      color: $primary-text-color;
+      box-shadow: 3px 3px 3px 0 $logo-primary-color, 
+      -3px -3px 3px 0 $logo-secondary-color;
+      border-radius: 0.25rem;
         transform: scale(1.2);
     }
   }
@@ -60,15 +63,15 @@
   }
 
   &__item-title {
-    @include font-style($medium-font, 0.75rem);
+    @include font-style($medium-font, 1rem);
     margin: 0;
     padding-bottom: 0.25rem;
   }
 
   &__item-total {
-    @include font-style($light-font, 0.625rem);
+    @include font-style($light-font, 0.875rem);
     color: $secondary-text-color;
-    margin: 0;
+    margin-top: 0.5rem;
   }
 
   &__checkbox-label {
